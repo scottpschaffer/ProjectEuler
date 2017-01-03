@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<title>Euler 10</title>
+	</head>
+	<body>
+		<h1>The Answer is...</h1>
+		<span id='e10'></span>
+
+		<script>
+
+			function funky10(){
+				var sum = 5;
+				for (a=5; a < 2000000; a++){
+					if (isPrime(a)){
+						sum += a;
+					}
+				}				
+				return sum;
+			}
+
+			function isPrime(p){
+				var result=true;
+				for (x=2; x<(p/2); x++){
+					if ((p%x) == 0){
+						result=false;
+						break;
+					}
+				}
+				return result;
+			}
+		
+			var e10Stuff = document.getElementById('e10');
+			e10Stuff.textContent = funky10();
+		</script>
+
+	</body>
+</html>

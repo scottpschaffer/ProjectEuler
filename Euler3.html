@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Euler 3</title>
+	</head>
+	<body>
+		<h2>The prime factors of 13195 are 5, 7, 13 and 29.</h2>
+		<br>
+		<h2>What is the largest prime factor of the number 600851475143 ?<h2>
+		<br>
+		<h3>The answer is</h3>
+		<span id="e3"></span>
+
+		<script>
+			function funky3(){
+				// The big number
+				var a = 600851475143;
+				// the largest Prime factor
+				var h = 0;
+				// from 2 to half of the big number
+				for (x = 2; x <= (a / 2); x++){
+					// if x is a multiple of big number a
+					if ((a % x) == 0){
+						// factor is a Prime number
+						if (isPrime(a / x)){
+							// h is assigned the Prime factor
+							h= a / x;
+							// break out of if statements and go to next number in for loop
+							break;	
+						}
+						
+					}
+						
+				}
+				// return largest Prime factor
+				return h;
+			}
+			function isPrime(z){
+				// start out as true
+				var t = true;
+				// parse through numbers from 2 to half of number			
+				for (y = 2; y <= (z / 2); y++){
+					// if z is divisible by y
+					if ((z % y) == 0){
+						// number is not Prime
+						t = false;
+						// break out of loop
+						break;
+					}
+				}
+				// return true or false if Prime number
+				return t;
+			}
+
+			var e3stuff = document.getElementById('e3');
+			e3stuff.textContent = funky3()
+		</script>
+	</body>
+</html>

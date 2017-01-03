@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Euler 4</title>	
+	</head>
+	<body>
+		<h1>The Answer is:</h1>
+		<span id="e4"></span>
+		<script>
+			function funky4(){
+				var largest = 0;
+				for (a = 100; a < 1000; a++){
+					for (b = 100; b < 1000; b++){
+						mult = a * b;
+						
+						var mu = isPal(mult);
+						//document.write('A' + a + 'B' + b + 'M' + mult + 'MU' + mu);
+						if (mu){
+							if (mult > largest){
+								largest = mult;
+							}
+						}
+					}
+				}
+				return largest;
+			}
+			function isPal(m){
+				var arr = [0,0,0,0,0,0];
+				var m1 = 0, m2 = 0, m3 = 0, m4 = 0, m5 = 0;
+				m1 = m - (m % 100000);
+				//document.write(' ' + m1 + ' ' + a[0] + ' ' + a[2] + ' ' + a[3] + ' ' + a[4] + ' ' + a[5] + '*');
+				arr[0] = (m1 / 100000);
+				m2 = m - m1 - (m % 10000);
+				arr[1] = m2 / 10000;
+				m3 = m - m1 - m2 - (m % 1000);
+				arr[2] = m3 / 1000;
+				m4 = m - m1 - m2 - m3 - (m % 100);
+				arr[3] = m4 / 100;
+				m5 = m - m1 - m2 - m3 - m4 - (m % 10);
+				arr[4] = m5 / 10;
+				arr[5] = m - m1 - m2 - m3 - m4 - m5;
+				
+				var x = 5, y = 0, f = 0, t = 0;
+				while (x > 0){
+					if ((arr[y] == 0) && (f == 0)){
+						x--;
+					}
+					else{
+						f = 1;
+						if (arr[y] != arr[y+x]){
+							t++;
+						}
+					}
+					y++;
+					x -= 2;
+
+				}
+				if (t > 0){
+					return false;
+				}
+				else{
+					return true;
+				}
+			}
+			var e4Stuff = document.getElementById('e4');
+			e4Stuff.textContent = funky4();
+		</script>
+	</body>
+</html>

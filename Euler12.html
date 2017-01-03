@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<Title>Euler 12</title>
+	</head>
+	<body>
+		<h1>The Answer is...</h1>
+		<p id="e12"></p>
+
+		<script>
+			function funky12(){
+				var cont = true;
+				var x = 1;
+				var sum = 0;
+				var mult = 0;
+				var ans = 0;
+				
+				while (cont){
+					for (a=x;a>0;a--){
+						sum += a;
+					}
+
+					x++;
+					
+					var sr = Math.floor(Math.sqrt(sum));
+					document.write('s' + sr + 's');
+
+					for (b=1;b<=sr;b++){
+						if ((sum%b) == 0){
+							mult += 2;
+						}
+					}
+
+					if ((sr * sr) == sum){
+						mult -= 1;
+					}
+
+					document.write('m' + mult + 'm');
+
+					if (mult > 500){
+						cont = false;
+					}
+					var ans = sum;
+					sum = 0;
+					mult = 0;
+				}
+				return (ans);
+
+			}
+
+			var e12Stuff = document.getElementById("e12");
+			e12Stuff.textContent = funky12();
+		</script>
+	</body>
+</html>

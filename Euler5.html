@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Euler 5</title>
+	</head>
+	<body>
+		<h1>The Answer is...</h1>
+		<span id="e5"></span>
+
+		<script>
+			function funky5(){
+				t = true, x = 1, z = 0;
+				while (t){
+					x++;
+					//document.write(' ' + x + ' ');
+					for (y=1; y<21; y++){
+						//document.write('@' + y + '@');
+						if (x % y != 0){
+							z = 0;
+							break;
+						}
+						else{
+							z++;
+						}
+					}
+					if (z == 20){
+						t = false;
+					}
+					
+				}
+				return x;
+			}
+			var e5Stuff = document.getElementById('e5');
+			e5Stuff.textContent = funky5();
+		</script>
+	</body>
+</html>

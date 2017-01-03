@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Euler 6</title>
+	</head>
+	<body>
+		<h1>The Answer is...</h1>
+		<span id="e6"></span>
+
+		<script>
+			function funky6(){
+				var sum1 = 0, sum2 = 0;
+				//document.write(sum2);
+				for (a = 1; a < 101; a++){
+					sum1 += Math.pow(a,2);
+					sum2 += a;
+					
+				}
+				sum2 = Math.pow(sum2,2);
+				//document.write(sum2);
+				var diff = sum2 - sum1;
+				return diff;
+			}
+
+			var e6Stuff = document.getElementById('e6');
+			e6Stuff.textContent = funky6();
+		</script>
+	</body>
+</html>
