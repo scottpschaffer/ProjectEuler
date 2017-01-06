@@ -1,0 +1,97 @@
+<!-- Project Euler #17:
+
+If the numbers 1 to 5 are written out in words: One, two, three, four, five, then there are 3+3+5+4+4 = 19 letters used in total.
+
+If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
+
+Note: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one Hundred and fifteen) contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage. -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Euler 17</title>
+	</head>
+	<body>
+		<h1>The Answer is...</h1>
+		<p id="e17"></p>
+
+		<script>
+			function funky17(){			
+				var answer = "";
+				// Get the first twenty entries
+				for (var h = 1; h < 21; h++) {
+					answer += arr[h];
+				}
+				
+				// Get the entries from 21 to 999
+				for (var i=21; i<1000; i++){
+					
+					var text = "";					
+					// To save i, create j (which will be altered)
+					var j = i;
+					
+					// If # is 100, 200, 300, etc.
+					if ((j % 100) === 0) {
+						text += arr[j / 100] + "hundred";
+					
+					// Otherwise 101, 102, etc.
+					} else if ((j / 10) > 10) {
+						text += arr[Math.floor(j / 100)] + "hundredand";
+						// Process remainder (one Hundred and ____)
+						j = (j % 100);
+					}
+					
+					// If less than 100 and multiple of 10 OR less than 20
+					if (((j < 100) && ((j % 10) === 0)) || (j < 20)){
+						text += arr[j];
+					
+					// Otherwise if less than 100, but greater than 20
+					} else if ((j < 100) && ((j / 10) > 2)) {
+						text += arr[j - (j % 10)] + arr[j % 10];
+					}
+					arr[i] = text;
+					answer += arr[i];
+				}
+				answer += arr[1000];
+				return answer.length;
+				
+			}
+			
+			var arr = [];
+			arr[0] = "and";
+			arr[1] = "one";
+			arr[2] = "two";
+			arr[3] = "three";
+			arr[4] = "four";
+			arr[5] = "five";
+			arr[6] = "six";
+			arr[7] = "seven";
+			arr[8] = "eight";
+			arr[9] = "nine";
+			arr[10] = "ten";
+			arr[11] = "eleven";
+			arr[12] = "twelve";
+			arr[13] = "thirteen";
+			arr[14] = "fourteen";
+			arr[15] = "fifteen";
+			arr[16] = "sixteen";
+			arr[17] = "seventeen";
+			arr[18] = "eighteen";
+			arr[19] = "nineteen";
+			arr[20] = "twenty";
+			arr[30] = "thirty";
+			arr[40] = "forty";
+			arr[50] = "fifty";
+			arr[60] = "sixty";
+			arr[70] = "seventy";
+			arr[80] = "eighty";
+			arr[90] = "ninety";
+			arr[1000] = "onethousand";			
+
+			var e17Stuff = document.getElementById("e17");
+			e17Stuff.textContent = funky17();
+		</script>
+	</body>
+</html>
+

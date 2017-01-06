@@ -61,8 +61,12 @@
 				arr[18] = [20,73,35,29,78,31,90,01,74,31,49,71,48,86,81,16,23,57,05,54];
 				arr[19] = [01,70,54,71,83,51,54,69,16,92,33,48,61,43,52,01,89,19,67,48];
 
+				// mu holds the multiplied values
 				var mu = 1;
+				// pr holds the greatest product of numbers
 				var pr = 1;
+
+				// Start from 4th row and check upwards
 				for (a=3;a<20;a++){
 					for (b=0;b<20;b++){
 						mu *= (arr[a][b]);
@@ -77,6 +81,7 @@
 					}
 				}
 				
+				// Start from 4th row and check diagonal from lower-right to upper-left
 				for (c=3;c<20;c++){
 					for (d=0;d<17;d++){
 						mu *= (arr[c][d]);
@@ -91,6 +96,7 @@
 					}
 				}
 
+				// Start from 4th row and check diagonal from lower-left to upper-right
 				for (e=3;e<20;e++){
 					for (f=3; f<20;f++){
 						mu *= (arr[e][f]);
@@ -104,6 +110,22 @@
 						mu = 1;
 					}	
 				}
+
+				// Start from first row and check left to right for each line
+				for (g=0;g<20;g++){
+					for (h=0; h<17;h++){
+						mu *= (arr[g][h]);
+						mu *= (arr[g][h+1]);
+						mu *= (arr[g][h+2]);
+						mu *= (arr[g][h+3]);
+						if (mu > pr){
+							document.write(mu);
+							pr = mu;
+						}
+						mu = 1;
+					}	
+				}
+
 				return pr;
 			}
 			var e11Stuff = document.getElementById("e11");

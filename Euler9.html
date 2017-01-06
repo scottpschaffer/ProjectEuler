@@ -18,15 +18,22 @@
 		<script>
 			function funky9(){
 				var x = 0;
+				// a is between 1 and 1000
 				for (a=1;a<1000;a++){
+					// b is between 1 and 1000
 					for (b=1;b<1000;b++){
+						// c2 is a^2 + b^2
 						var c2 = Math.pow(a,2) + Math.pow(b,2);
+						// c1 is square root
 						var c1 = Math.sqrt(c2);
+						// c0 is c1 rounded up
 						var c0 = Math.round(c1);
+
+						// if c1 = c0 (whole number)
 						if ((c1 % c0) == 0){
+							// If Pythagorean Triplet
 							if (((a + b + c1) == 1000) && (a < b) && (b < c1)){
 								x = a * b * c1;
-								document.write('**' + a + ' ' + b + ' ' + c1 + '**');
 								break;
 							}
 						}

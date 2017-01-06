@@ -44,13 +44,18 @@
 			}
 
 			function funky14(){
-				
+				// num is number with longest chain
 				var num = 0;
+				// count is the number of terms in the current sequence
 				var count = 1;
+				// a holds the current term
 				var a = 0;
+				// tcount holds the number of longest sequence
 				var tcount = 1;				
+				// b is the numbers to test (1 through 999999)		
 				for (var b = 1;b < 1000000; b++){
 					a = b;
+					// While term is not 1, loop through formula
 					while (a !== 1){
 						
 						if ((a % 2) === 0){
@@ -61,7 +66,7 @@
 						count++;
 						
 					}
-					
+					// if new sequence count is greater than current highest count
 					if (count > tcount){
 						tcount = count;
 						num = b;

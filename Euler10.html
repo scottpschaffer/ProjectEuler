@@ -15,7 +15,9 @@
 		<script>
 
 			function funky10(){
+				// sum holds sum of primes
 				var sum = 5;
+				// Start at third prime number and stop before 2 million
 				for (a=5; a < 2000000; a++){
 					if (isPrime(a)){
 						sum += a;
@@ -26,6 +28,7 @@
 
 			function isPrime(p){
 				var result=true;
+				// Go from 2 to half of number to determine prime
 				for (x=2; x<(p/2); x++){
 					if ((p%x) == 0){
 						result=false;

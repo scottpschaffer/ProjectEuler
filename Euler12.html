@@ -37,27 +37,30 @@
 				var ans = 0;
 				
 				while (cont){
+					// Loop to get next Triangle Number
 					for (a=x;a>0;a--){
 						sum += a;
 					}
 
 					x++;
-					
-					var sr = Math.floor(Math.sqrt(sum));
-					document.write('s' + sr + 's');
 
+					// Get Square Root rounded down
+					var sr = Math.floor(Math.sqrt(sum));
+
+					// From 1 to Square Root, check if b is multiple of Triangle Number
 					for (b=1;b<=sr;b++){
 						if ((sum%b) == 0){
+							// If a Triangle Number, increment count by 2 numbers
 							mult += 2;
 						}
 					}
 
+					// If perfect Square Root, don't count number twice, so decrement by 1
 					if ((sr * sr) == sum){
 						mult -= 1;
 					}
 
-					document.write('m' + mult + 'm');
-
+					// If # of multiples exceeds 500, then stop
 					if (mult > 500){
 						cont = false;
 					}

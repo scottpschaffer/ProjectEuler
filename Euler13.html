@@ -116,16 +116,16 @@
 				var sum = [5];
 				var suma = 0;
 				var rem = 0;
+				// From last column of numbers to first
 				for (a=4;a>=0;a--){
+					// For each row, add the 10-digit number in column
 					for (b=0;b<numbs.length;b++){
-						document.write('*' + numbs[b][a] + '*');
 						suma += numbs[b][a];
-						document.write('@' + suma + '@');
 					}
+					// Sum for that column plus the previous remainder
 					sum[a] = suma + rem;
+					// Remainder is the (sum minus sum Modded by 10^10) divided by 10^10
 					rem = ((suma - (suma % 10000000000)) / 10000000000);
-					document.write('REM' + rem + 'REM');
-					document.write('#' + sum[a] + '#');
 					suma = 0;
 				}
 				return (sum[0]);
