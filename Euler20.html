@@ -6,32 +6,69 @@
 </head>
 <body>
     <h1>Factorial digit sum</h1>
+    <h3>n! means n × (n − 1) × ... × 3 × 2 × 1</h3>
+
+    <h3>example, 10! = 10 × 9 × ... × 3 × 2 × 1 = 3628800,</h3>
+    <h3>and the sum of the digits in the number 10! is 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27.</h3>
+
+    <h2>Find the sum of the digits in the number 100!</h2>
+
     <h3>The Answer is...</h3>
-    <p id="e20"></p>
+	<p id="e20"></p>
 
     <script>
+
         function funky20()
         {
-            var factorial = 1;
-            var o = [];
-            var p = 10;
-            var r = 0;
+            // Array of numbers
+            var arr = [];
+            // Holds factorial product
+            arr[0] = [1];
+            // Temp array
+            arr[1] = [];
+            // Carry-over
+            var c = 0;
+
+            // 100 factorial
+            for (var a = 100; a > 0; a--)
+            {
+                // For every 3 digits stored in factorial product
+                for (var b = 0; b < arr[0].length; b++)
+                {
+                    // c is product of 3-digit group multiplied by factorial number plus Carry-over
+                    c = (arr[0][b] * a + c);
+                    // Get last 3 digits and put in array as group
+                    var d = (c % 1000);
+                    arr[1].push(d);
+                    // Calculate Carry-over to be added to next group
+                    c = ((c - d) / 1000);
+                }
+                
+                // Add Carry-over to array if at end of number
+                arr[1].push(c);
+                // Assign new number to be used again for multiplied by next Factorial
+                arr[0] = arr[1];
+                // Reset temp array
+                arr[1] = [];
+	        }
 
             var sum = 0;
-
-            for (var x = 10; x > 0; x--)
+            for (var d = 0; d < arr[0].length; d++)
             {
-                factorial *= x;
+                // Right-most digit
+                var first = Math.floor(arr[0][d] % 10);
+                // Middle digit
+                var second = Math.floor(((arr[0][d] % 100) - first) / 10);
+                // Left-most digit
+                var third = Math.floor(((arr[0][d] - second) - first) / 100);
+                sum += first + second + third;
             }
-
-            var s = factorial % 10;
-
-            console.log("factorial = " + factorial + "s = " + s);
-            var q = factorial;
+            return sum;
         }
 
-        var e20stuff = document.getElementById("e20");
-        e20stuff.textContent = funky20();
+
+        var e20Stuff = document.getElementById("e20");
+		e20Stuff.textContent = funky20();
     </script>
 </body>
 </html>

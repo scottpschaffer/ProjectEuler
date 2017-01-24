@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Euler 19</title>
+</head>
+<body>
+    <h1>Counting Sundays</h1>
+    <h2>You are given the following information, but you may prefer to do some research for yourself.</h2>
+
+    <h3>1 Jan 1900 was a Monday.</h3>
+    <h3>Thirty days has September,</h3>
+    <h3>April, June and November.</h3>
+    <h3>All the rest have thirty-one,</h3>
+    <h3>Saving February alone,</h3>
+    <h3>Which has twenty-eight, rain or shine.</h3>
+    <h3>And on leap years, twenty-nine.</h3>
+
+    <h2>A leap year occurs on any year evenly divisible by 4, but not on a century unless it is divisible by 400.</h2>
+    <h2>How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?</h2>
+
+    <h3>The Answer is...</h3>
+	<p id="e19"></p>
+
+    <script>
+
+        function funky19(){
+
+            var year = 1901;
+            var monthArray = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+            var weekArray = [];
+            weekArray[0] = [];
+            weekArray[1] = [];
+            weekArray[2] = [];
+            weekArray[3] = [];
+            weekArray[4] = [];
+            weekArray[5] = [];
+            weekArray[6] = [];
+            
+            // v is day of the week (Jan 1, 1901 is a Tuesday)
+            var v = 2;
+            // w is the current year
+            for (var w = 1901; w < 2001; w++)
+            {
+                // x is the number of months in monthArray
+                for (var x = 0; x < monthArray.length; x++)
+                {
+                    // y is the day number
+                    var y = 1;
+                    // z is the number of days in month
+                    var z = monthArray[x] + 1;
+                    // If February and Leap Year increase z by 1
+                    if ((x == 1) && (((w % 4) == 0) || ((w % 400) == 0)))
+                    {
+                        z++;
+                    }
+
+                    while (y < z)
+                    {
+                        v %= 7;
+                        //console.log("v = " + v + "y = " + y);
+                        weekArray[v].push(y++);
+                        v++;
+                    }
+                }
+            }
+
+            // Count the number of 1s in the Sunday Array
+            var count = 0;
+            for (var a = 0; a < weekArray[0].length; a++)
+            {
+                if (weekArray[0][a] == 1)
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        var e19Stuff = document.getElementById("e19");
+		e19Stuff.textContent = funky19();
+    </script>
+</body>
+</html>
