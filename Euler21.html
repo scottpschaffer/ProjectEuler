@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Euler 21</title>
+</head>
+<body>
+    <h1>Amicable numbers</h1>
+    <h2>Problem 21</h2>
+    <h2>Let d(n) be defined as the sum of proper divisors of n (numbers less than n which divide evenly into n).</h2>
+    <h2>If d(a) = b and d(b) = a, where a ≠ b, then a and b are an amicable pair and each of a and b are called amicable numbers.</h2>
+    <h2>For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284.</h2>
+    <h2>The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.</h2>
+    <h2>Evaluate the sum of all the amicable numbers under 10000.</h2>
+    <br>
+    <h3>The Answer is...</h3>
+    <p id="e21"></p>
+    <h3>DDDDDDD</h3>
+    <script>
+        function funky21()
+        {
+            // Divisors for first potential Amicable number
+            var divisorsA = [];
+            // Divisors for second potential Amicable number
+            var divisorsB = [];
+            // Sum of first Divisors
+            var sumA = 0;
+            // Sum of second Divisors
+            var sumB = 0;
+            // Sum of Amicable numbers
+            var sumAmicable = 0;
+            for (var a = 1; a < 300; a++)
+            {
+                
+                divisorsA = GetDivisors(a);
+                for (var b = 0; b < divisorsA.length; b++)
+                {
+                    sumA += divisorsA[b];
+                }
+                console.log("sumA = " + sumA);
+                divisorsB = GetDivisors(sumA);
+                for (var c = 0; c < divisorsB.length; c++)
+                {
+                    sumB += divisorsB[c];
+                }
+                console.log("sumB = " + sumB);
+                if (a == sumB)
+                {
+                    console.log("aaaaaaaassssaaa");
+                    sumAmicable += a;
+                }
+            }
+
+            return sumAmicable;
+        }
+
+        function GetDivisors(a)
+        {
+            
+            var tempDivisors = [];
+            for (var b = 1; b < (Math.floor(Math.sqrt(a))); b++)
+            {
+                if ((a % b) == 0)
+                {
+                    console.log("GetDivisor" + b);
+                    tempDivisors.push(b)
+                    if ((b !== 1) || (a / b !== b))
+                    {
+                        tempDivisors.push(a / b);
+                    }
+                }
+            }
+            return tempDivisors;
+        }
+        
+        var e21Stuff = document.getElementById("e21");
+		e21Stuff.textContent = funky21();
+    </script>
+
+</body>
+</html>
