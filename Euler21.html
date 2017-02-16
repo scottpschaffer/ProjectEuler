@@ -17,63 +17,73 @@
     <p id="e21"></p>
 
     <script>
-        function funky21()
+        function Funky21()
         {
-            // Divisors for first potential Amicable number
+	        // Holds first number's devisors
             var divisorsA = [];
-            // Divisors for second potential Amicable number
+	        // Holds second number's devisors
             var divisorsB = [];
-            // Sum of first Divisors
-            var sumA = 0;
-            // Sum of second Divisors
-            var sumB = 0;
-            // Sum of Amicable numbers
-            var sumAmicable = 0;
-            for (var a = 1; a < 300; a++)
+	        // sum of amicable numbers
+            var amicableNums = 0;
+
+	        // Goes through all numbers under 10000
+            for (var a = 1; a < 10000; a++)
             {
-                
+		        // sum of divisors for first number
+                var sum1 = 0;
+		        // Get the divisors of first number
                 divisorsA = GetDivisors(a);
-                for (var b = 0; b < divisorsA.length; b++)
+		        // Get sum of divisors
+                for (var z = 0; z < divisorsA.length; z++)
                 {
-                    sumA += divisorsA[b];
+                    sum1 += divisorsA[z];
                 }
-                console.log("sumA = " + sumA);
-                divisorsB = GetDivisors(sumA);
-                for (var c = 0; c < divisorsB.length; c++)
+                
+		        // sum of divsors of second number
+                var sum2 = 0;
+		        // Get divisors of second number
+                divisorsB = GetDivisors(sum1);
+		        // Get sum of divisors
+                for (var y = 0; y < divisorsB.length; y++)
                 {
-                    sumB += divisorsB[c];
+                    sum2 += divisorsB[y];
                 }
-                console.log("sumB = " + sumB);
-                if (a == sumB)
+
+		        // If first number is equal to sum of second number AND the sums don't equal each other
+                if ((a == sum2) && (sum1 !== sum2))
                 {
-                    sumAmicable += a;
+                    amicableNums += a;
                 }
             }
 
-            return sumAmicable;
+            return amicableNums;
+            
         }
 
         function GetDivisors(a)
         {
-            
-            var tempDivisors = [];
-            for (var b = 1; b < (Math.floor(Math.sqrt(a))); b++)
+	        // Holds divisors of number
+            var divisors = [];
+	        // goes from 1 to square root of number (rounded-down) to get divisors
+            for (var b = 1; b < (Math.floor(Math.sqrt(a)) + 1); b++ )
             {
+		        // If b is a multiple of a
                 if ((a % b) == 0)
                 {
-                    console.log("GetDivisor" + b);
-                    tempDivisors.push(b)
-                    if ((b !== 1) || (a / b !== b))
+		            // Definitely get first number 
+                    divisors.push(b);
+		            // If b is not 1 or square root, then add second number as a divisor
+                    if ((b !== 1) && (a / b !== b))
                     {
-                        tempDivisors.push(a / b);
+                        divisors.push(a / b);
                     }
                 }
             }
-            return tempDivisors;
+	    //debugger;
+            return divisors;
         }
-        
         var e21Stuff = document.getElementById("e21");
-		e21Stuff.textContent = funky21();
+	    e21Stuff.textContent = Funky21();
     </script>
 
 </body>
