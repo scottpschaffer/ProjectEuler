@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Euler 23</title>
+</head>
+<body>
+    <h1>Non-abundant sums</h1>
+    <br>
+    <h2>A perfect number is a number for which the sum of its proper divisors is exactly equal to the number.</h2>
+    <h2>For example, the sum of the proper divisors of 28 would be 1 + 2 + 4 + 7 + 14 = 28, which means that 28 is a perfect number.</h2>
+
+    <h2>A number n is called deficient if the sum of its proper divisors is less than n and it is called abundant if this sum exceeds n.<h2>
+
+    <h2>As 12 is the smallest abundant number, 1 + 2 + 3 + 4 + 6 = 16, the smallest number that can be written as the sum of two abundant numbers is 24.</h2>
+    <h2>By mathematical analysis, it can be shown that all integers greater than 28123 can be written as the sum of two abundant numbers.</h2>
+    <h2>However, this upper limit cannot be reduced any further by analysis even though it is known that the greatest number that cannot be expressed</h2>
+    <h2>as the sum of two abundant numbers is less than this limit.</h2>
+    <br>
+    <h3>Find the sum of all the positive integers which cannot be written as the sum of two abundant numbers.</h3>
+
+    <h3>The Answer is...</h3>
+    <p id="e23"></p>
+
+    <script>
+        
+        function NonAbundantSum()
+        {
+            var sum = 0;
+            var abundant = [];
+            var abundant2 = [];
+	        var bottomNum = 0;
+            var topNum = 0;
+            for (var a = 12; a < 28124; a++)
+            {
+                if (checkAbundant(a))
+                {               
+		            abundant.push(a);
+                    console.log("a = " + a);
+		        } 
+	        }
+
+            abundant2 = abundant;
+            console.log("abundant = " + abundant.length + " abundant2 = " + abundant2.length);
+            for (var aa = 0; aa < abundant.length; aa++)
+            {
+                for (var bb = 0; bb < abundant2.length; bb++)
+                {
+                    topNum = abundant[aa] + abundant2[bb];
+                    //console.log("bottomNum = " + bottomNum + " topNum = " + topNum);
+                    sum += between(bottomNum, topNum);
+                    //console.log("sum = " + sum);
+                    bottomNum = topNum;
+                }
+                abundant2.shift();
+            }
+
+            return sum;
+        }
+
+        function checkAbundant(a)
+        {
+            var divisor = [];
+            var sum = 1;
+            for (var z = 2; z <= (a / 2); z++)
+            {
+                if ((a % z) == 0)
+                {
+                    sum += z;
+                }
+            }
+
+            if (sum > a)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+	function between(bottomNum, topNum)
+	{
+	    var sum = 0;
+	    for (var a = (bottomNum + 1); a < topNum; a++)
+	    {
+		    sum += a;
+	    }
+	    return sum;
+	}
+        
+        
+        var e23Stuff = document.getElementById("e23");
+	    e23Stuff.textContent = NonAbundantSum();
+    </script>
+</body>
+</html>
